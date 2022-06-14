@@ -16,7 +16,7 @@ task default: %i[test rubocop]
 
 Rake::Task["release"].enhance do
   puts "Don't forget to publish the release on GitHub!"
-  system "open https://github.com/gauravtiwari/tomo-plugin-good_job/releases"
+  system "open https://github.com/gauravtiwari/tomo-plugin-aws_sqs/releases"
 end
 
 task :disable_overcommit do
@@ -27,13 +27,13 @@ Rake::Task[:build].enhance [:disable_overcommit]
 
 task :verify_gemspec_files do
   git_files = `git ls-files -z`.split("\x0")
-  gemspec_files = Gem::Specification.load("tomo-plugin-good_job.gemspec").files.sort
+  gemspec_files = Gem::Specification.load("tomo-plugin-aws_sqs.gemspec").files.sort
   ignored_by_git = gemspec_files - git_files
   next if ignored_by_git.empty?
 
   raise <<~ERROR
 
-    The `spec.files` specified in tomo-plugin-good_job.gemspec include the
+    The `spec.files` specified in tomo-plugin-aws_sqs.gemspec include the
     following files that are being ignored by git. Did you forget to add them
     to the repo? If not, you may need to delete these files or modify the
     gemspec to ensure that they are not included in the gem by mistake:
@@ -62,7 +62,7 @@ namespace :bump do
     latest = RubyVersions.latest
     latest_patches = RubyVersions.latest_supported_patches
 
-    replace_in_file "tomo-plugin-good_job.gemspec", /ruby_version = .*">= (.*)"/ => lowest
+    replace_in_file "tomo-plugin-aws_sqs.gemspec", /ruby_version = .*">= (.*)"/ => lowest
     replace_in_file ".rubocop.yml", /TargetRubyVersion: (.*)/ => lowest_minor
     replace_in_file ".circleci/config.yml", /default: "([\d.]+)"/ => latest
     replace_in_file ".circleci/config.yml", /version: (\[.+\])/ => latest_patches.inspect
