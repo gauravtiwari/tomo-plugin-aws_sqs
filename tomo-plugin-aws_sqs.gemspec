@@ -3,7 +3,7 @@ require_relative "lib/tomo/plugin/aws_sqs/version"
 Gem::Specification.new do |spec|
   spec.name = "tomo-plugin-aws_sqs"
   spec.version = Tomo::Plugin::AwsSqs::VERSION
-  spec.authors = ["Matt Brictson"]
+  spec.authors = ["Matt Brictson", "Gaurav Tiwari"]
   spec.email = ["opensource@gauravtiwari.com", "gaurav@gauravtiwari.co.uk"]
 
   spec.summary = "Aws::Sqs background tasks for tomo"
